@@ -3,32 +3,12 @@ import { Bell, Rabbit, Shield } from "lucide-react";
 import Image from "next/image";
 
 export default async function Home() {
+  const products = null ? await getProducts() : [];
 
-   const products = null? await getProducts() : [];
-
-    const FEATURES = [
-    {
-      icon: Rabbit,
-      title: "Lightning Fast",
-      description:
-        "Droplyx extracts prices in seconds, handling JavaScript and dynamic content",
-    },
-    {
-      icon: Shield,
-      title: "Always Reliable",
-      description:
-        "Works across all major e-commerce sites with built-in anti-bot protection",
-    },
-    {
-      icon: Bell,
-      title: "Smart Alerts",
-      description: "Get notified instantly when prices drop below your target",
-    },
-  ];
-
+ 
 
   return (
-    <main className="min-h-screen bg-linear-to-br from-orange-50 via-white to-orange-50"> 
+    <main className="min-h-screen bg-linear-to-br from-orange-50 via-white to-orange-50">
       {/* Header */}
       <header className="bg-white/80 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
@@ -45,7 +25,6 @@ export default async function Home() {
           <AuthButton />
         </div>
       </header>
-
 
       {/* Hero Section */}
       <section className="py-20 px-4">
@@ -83,8 +62,6 @@ export default async function Home() {
           )}
         </div>
       </section>
-
-
     </main>
   );
 }
