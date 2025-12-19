@@ -5,7 +5,25 @@ import Image from "next/image";
 export default async function Home() {
   const products = null ? await getProducts() : [];
 
- 
+  const FEATURES = [
+    {
+      icon: Rabbit,
+      title: "Lightning Fast",
+      description:
+        "Droplyx extracts prices in seconds, handling JavaScript and dynamic content",
+    },
+    {
+      icon: Shield,
+      title: "Always Reliable",
+      description:
+        "Works across all major e-commerce sites with built-in anti-bot protection",
+    },
+    {
+      icon: Bell,
+      title: "Smart Alerts",
+      description: "Get notified instantly when prices drop below your target",
+    },
+  ];
 
   return (
     <main className="min-h-screen bg-linear-to-br from-orange-50 via-white to-orange-50">
