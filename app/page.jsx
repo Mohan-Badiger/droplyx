@@ -50,7 +50,6 @@ export default async function Home() {
           <div className="inline-flex items-center gap-2 bg-orange-100 text-orange-700 px-6 py-2 rounded-full text-sm font-medium mb-6">
             Made with 🩷 by Mohan
           </div>
-
           <h2 className="text-5xl font-bold text-gray-900 mb-4 tracking-tight">
             Never Miss a Price Drop
           </h2>
@@ -60,7 +59,6 @@ export default async function Home() {
           </p>
           {/* 
           <AddProductForm user={user} /> */}
-
           {/* Features */}
           {products.length === 0 && (
             <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mt-16">
