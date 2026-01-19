@@ -49,8 +49,7 @@ export default function AddProductForm({ user }) {
             placeholder="Paste product URL (Amazon, Walmart, etc.)"
             className="h-12 text-base"
             required
-            disabled={loading}
-          />
+            disabled={loading}/>
 
           <Button
             type="submit"
