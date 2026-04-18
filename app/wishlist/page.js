@@ -51,7 +51,7 @@ export default function Wishlist() {
         <h1 className="text-3xl font-bold text-gray-900 mb-8">My Wishlist</h1>
 
         {products.length === 0 ? (
-          <div className="bg-white rounded-2xl p-12 text-center shadow-sm border border-gray-100">
+          <div className="bg-white rounded-none p-12 text-center shadow-sm border border-gray-100">
             <h3 className="text-lg font-semibold text-gray-900 mb-1">Your wishlist is empty</h3>
             <p className="text-gray-500">Track prices from Amazon, Flipkart, Meesho, and Ajio to see them here.</p>
           </div>
