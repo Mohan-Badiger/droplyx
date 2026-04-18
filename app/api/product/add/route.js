@@ -31,9 +31,23 @@ export async function POST(req) {
     }
 
     // Scrape new product
-    const scrapedData = await scrapeProductUrl(url);
+    let scrapedData;
+    try {
+      scrapedData = await scrapeProductUrl(url);
+    } catch (scrapeErr) {
+      console.warn("Scraper Warning:", scrapeErr.message);
+      return NextResponse.json(
+        { 
+          success: false, 
+          error: "Store blocked request or format changed. Try again later.", 
+          message: scrapeErr.message 
+        }, 
+        { status: 400 }
+      );
+    }
+
     if (!scrapedData) {
-      return NextResponse.json({ error: "Failed to read product data" }, { status: 500 });
+      return NextResponse.json({ error: "Failed to read product data" }, { status: 400 });
     }
 
     product = new Product({
@@ -59,7 +73,7 @@ export async function POST(req) {
   } catch (error) {
     console.error("Add Product Error:", error);
     return NextResponse.json(
-      { error: error.message || "Failed to add product" },
+      { error: "Internal Server Error" },
       { status: 500 }
     );
   }
