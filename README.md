@@ -11,6 +11,19 @@ DropLyx is a modern, production-ready price tracking platform built with Next.js
 - **🎯 Premium Dashboard**: A beautiful, modern interface highlighting tracked items, price drops, and account stats.
 - **⚙️ Automated Jobs**: A background scraper script designed to frequently update database entries effortlessly.
 
+## New Features Added
+
+* Product tracking
+* Price history
+* Alerts system
+
+## How to use
+
+1. Login
+2. Paste product URL
+3. Track product
+4. View dashboard
+
 ## Tech Stack
 
 - **Frontend:** Next.js 14, React 19, Tailwind CSS v4, Lucide React, Recharts
@@ -47,9 +60,7 @@ npm run dev
 ```
 Navigate to `http://localhost:3000` to view the platform.
 
-**5. Run the background price tracker job**
-This script checks all tracked URLs and sends email alerts if prices drop. Run it via cron locally or on a server every 30 minutes:
-```bash
+## Run price tracker
 node jobs/priceTracker.js
 ```
 

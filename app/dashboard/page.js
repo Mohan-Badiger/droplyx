@@ -6,6 +6,7 @@ import { useAuth } from "@/context/AuthContext";
 import ProductCard from "@/components/ProductCard";
 import { Loader2, Package, TrendingDown, BellRing } from "lucide-react";
 import { useRouter } from "next/navigation";
+import AddProductForm from "@/components/AddProductForm";
 
 export default function Dashboard() {
   const { user, loading: authLoading } = useAuth();
@@ -96,6 +97,11 @@ export default function Dashboard() {
           </div>
         </div>
 
+        {/* Add Product Section */}
+        <AddProductForm onProductAdded={(newProduct) => {
+          setProducts((prev) => [newProduct, ...prev]);
+        }} />
+
         {/* Recently Tracked */}
         <div className="mb-8 flex justify-between items-end">
           <h2 className="text-xl font-bold text-gray-800">Recently Tracked Items</h2>
@@ -110,7 +116,7 @@ export default function Dashboard() {
               <Package size={32} />
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-1">No products tracked yet</h3>
-            <p className="text-gray-500">Go to the homepage and paste a URL to start tracking.</p>
+            <p className="text-gray-500">Use the form above to paste a product URL and start tracking!</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
