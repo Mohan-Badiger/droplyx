@@ -53,9 +53,9 @@ export default function AddProductForm({ onProductAdded, redirectOnSuccess }) {
   };
 
   return (
-    <div className="bg-white rounded-none p-8 shadow-sm border border-gray-100 w-full mb-10 relative overflow-hidden">
+    <div className="bg-white/80 backdrop-blur-md rounded-2xl p-8 md:p-10 shadow-xl border border-white/60 w-full mb-10 relative overflow-hidden transition-all">
       {/* Decorative background glow */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-orange-50 rounded-none mix-blend-multiply filter blur-3xl opacity-70 -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+      <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-orange-200/40 to-rose-200/40 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
 
       <div className="relative z-10">
         <div className="mb-6">
@@ -73,7 +73,7 @@ export default function AddProductForm({ onProductAdded, redirectOnSuccess }) {
               value={url}
               onChange={(e) => setUrl(e.target.value)}
               placeholder="https://www.amazon.in/dp/..."
-              className="block w-full pl-14 pr-4 py-4 text-gray-900 placeholder-gray-400 bg-gray-50/50 border border-gray-200 rounded-none focus:ring-4 focus:ring-orange-500/10 focus:border-orange-500 focus:bg-white outline-hidden transition-all duration-300 font-medium"
+              className="block w-full pl-14 pr-4 py-4 text-gray-900 placeholder-gray-400 bg-white border border-gray-200 rounded-xl focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 hover:border-orange-200 outline-none transition-all duration-300 font-medium"
               required
               disabled={loading}
             />
@@ -81,7 +81,7 @@ export default function AddProductForm({ onProductAdded, redirectOnSuccess }) {
           <Button
             type="submit"
             disabled={loading || !url}
-            className="bg-gray-900 hover:bg-gray-800 text-white px-8 py-4 rounded-none font-medium h-auto flex items-center gap-2 transition-all duration-300 shadow-sm hover:shadow active:scale-[0.98]"
+            className="bg-slate-900 hover:bg-slate-800 text-white px-8 py-4 rounded-xl font-medium h-auto flex items-center gap-2 transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1 active:scale-[0.98]"
           >
             {loading ? (
               <>
@@ -98,13 +98,13 @@ export default function AddProductForm({ onProductAdded, redirectOnSuccess }) {
         </form>
 
         {error && (
-          <div className="mt-4 p-4 bg-red-50 text-red-600 rounded-none text-sm font-medium border border-red-100 flex items-center gap-2 animate-in fade-in slide-in-from-top-2">
+          <div className="mt-6 p-4 bg-red-50/80 backdrop-blur-sm text-red-600 rounded-xl text-sm font-semibold border border-red-100 flex items-center gap-2 animate-in fade-in slide-in-from-top-2">
             {error}
           </div>
         )}
         
         {success && (
-          <div className="mt-4 p-4 bg-green-50 text-green-700 rounded-none text-sm font-medium border border-green-100 flex items-center gap-2 animate-in fade-in slide-in-from-top-2">
+          <div className="mt-6 p-4 bg-green-50/80 backdrop-blur-sm text-green-700 rounded-xl text-sm font-semibold border border-green-100 flex items-center gap-2 animate-in fade-in slide-in-from-top-2">
             {success}
           </div>
         )}

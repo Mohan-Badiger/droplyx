@@ -37,23 +37,23 @@ export default function Wishlist() {
 
   if (authLoading || loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="min-h-screen flex items-center justify-center bg-slate-50">
         <Loader2 className="w-8 h-8 animate-spin text-orange-500" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-slate-50">
       <Navbar />
 
       <main className="max-w-7xl mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">My Wishlist</h1>
+        <h1 className="text-3xl font-bold text-slate-900 mb-8 tracking-tight">My Wishlist</h1>
 
         {products.length === 0 ? (
-          <div className="bg-white rounded-none p-12 text-center shadow-sm border border-gray-100">
-            <h3 className="text-lg font-semibold text-gray-900 mb-1">Your wishlist is empty</h3>
-            <p className="text-gray-500">Track prices from Amazon, Flipkart, Meesho, and Ajio to see them here.</p>
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-16 text-center shadow-sm border border-slate-100">
+            <h3 className="text-xl font-bold text-slate-900 mb-2 tracking-tight">Your wishlist is empty</h3>
+            <p className="text-slate-500 font-medium">Track prices from Amazon, Flipkart, Meesho, and Ajio to see them here.</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

@@ -33,7 +33,7 @@ export default function AuthButton() {
           variant="ghost"
           size="sm"
           onClick={logout}
-          className="gap-2 rounded-none"
+          className="gap-2"
         >
           <LogOut className="w-4 h-4" />
           Sign Out
