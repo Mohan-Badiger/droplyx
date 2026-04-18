@@ -86,11 +86,11 @@ export default function ProductDetailPage() {
       <Navbar />
 
       <main className="max-w-7xl mx-auto px-4 py-8">
-        <div className="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
+        <div className="bg-white rounded-none shadow-sm border border-gray-100 overflow-hidden">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-8 md:p-12">
             
             {/* Product Image */}
-            <div className="flex items-center justify-center bg-gray-50 rounded-2xl p-8 aspect-square relative">
+            <div className="flex items-center justify-center bg-gray-50 rounded-none p-8 aspect-square relative">
               {product.imageUrl ? (
                 <img
                   src={product.imageUrl}
@@ -100,7 +100,7 @@ export default function ProductDetailPage() {
               ) : (
                 <div className="text-gray-400">No Image Available</div>
               )}
-              <span className="absolute top-4 left-4 bg-white/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-gray-800 shadow-sm border border-gray-200">
+              <span className="absolute top-4 left-4 bg-white/80 backdrop-blur-md px-3 py-1 rounded-none text-xs font-bold uppercase tracking-wider text-gray-800 shadow-sm border border-gray-200">
                 {product.platform}
               </span>
             </div>
@@ -122,7 +122,7 @@ export default function ProductDetailPage() {
                   href={product.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-xl font-medium transition-colors"
+                  className="inline-flex items-center gap-2 bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-none font-medium transition-colors"
                 >
                   View on {product.platform}
                   <ExternalLink className="w-4 h-4" />
@@ -130,9 +130,9 @@ export default function ProductDetailPage() {
               </div>
 
               {/* Set alert section */}
-              <div className="bg-orange-50 rounded-2xl p-6 border border-orange-100">
+              <div className="bg-orange-50 rounded-none p-6 border border-orange-100">
                 <div className="flex items-center gap-2 mb-4">
-                  <div className="bg-orange-100 p-2 rounded-lg text-orange-600">
+                  <div className="bg-orange-100 p-2 rounded-none text-orange-600">
                     <Bell className="w-5 h-5" />
                   </div>
                   <h3 className="font-bold text-gray-900">Price Drop Alert</h3>
@@ -146,13 +146,13 @@ export default function ProductDetailPage() {
                     value={targetPrice}
                     onChange={(e) => setTargetPrice(e.target.value)}
                     placeholder="Enter target price"
-                    className="flex-1 rounded-xl border-gray-200 shadow-sm px-4 py-2 border focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-hidden"
+                    className="flex-1 rounded-none border-gray-200 shadow-sm px-4 py-2 border focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-hidden"
                     required
                   />
                   <Button
                     type="submit"
                     disabled={savingAlert}
-                    className="bg-orange-500 hover:bg-orange-600 text-white rounded-xl"
+                    className="bg-orange-500 hover:bg-orange-600 text-white rounded-none"
                   >
                     {savingAlert ? "Saving..." : "Set Alert"}
                   </Button>
@@ -163,7 +163,7 @@ export default function ProductDetailPage() {
 
           <div className="border-t border-gray-100 p-8 md:p-12 bg-gray-50/50">
             <h2 className="text-xl font-bold text-gray-900 mb-6">Price History</h2>
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+            <div className="bg-white rounded-none p-6 shadow-sm border border-gray-100">
               <PriceChart history={history} />
             </div>
           </div>
