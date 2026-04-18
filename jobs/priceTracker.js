@@ -13,7 +13,7 @@ const connectDB = async () => {
 };
 
 const ProductSchema = new mongoose.Schema({
-  url: String, platform: String, title: String, imageUrl: String, currentPrice: Number, usersTracking: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
+  url: String, platform: String, title: String, imageUrl: String, currentPrice: Number, trackedBy: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }], trackingCount: Number
 });
 const Product = mongoose.models.Product || mongoose.model("Product", ProductSchema);
 

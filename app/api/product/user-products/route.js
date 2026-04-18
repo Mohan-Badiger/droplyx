@@ -14,7 +14,7 @@ export async function GET(req) {
 
     await dbConnect();
 
-    const products = await Product.find({ usersTracking: user.id })
+    const products = await Product.find({ trackedBy: user.id })
       .sort({ createdAt: -1 });
 
     return NextResponse.json({ products });

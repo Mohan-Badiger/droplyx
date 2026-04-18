@@ -18,6 +18,12 @@ export default function ProductDetailPage() {
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // New Smart Stats
+  const [lowestPrice, setLowestPrice] = useState(null);
+  const [highestPrice, setHighestPrice] = useState(null);
+  const [recommendation, setRecommendation] = useState(null);
+  const [trackingCount, setTrackingCount] = useState(1);
+
   // Alert State
   const [targetPrice, setTargetPrice] = useState("");
   const [savingAlert, setSavingAlert] = useState(false);
@@ -36,6 +42,10 @@ export default function ProductDetailPage() {
         const data = await res.json();
         setProduct(data.product);
         setHistory(data.history || []);
+        setLowestPrice(data.lowestPrice);
+        setHighestPrice(data.highestPrice);
+        setRecommendation(data.recommendation);
+        setTrackingCount(data.trackingCount || 1);
       } catch (err) {
         console.error(err);
       } finally {
@@ -111,10 +121,43 @@ export default function ProductDetailPage() {
                 {product.title}
               </h1>
               
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className={`px-3 py-1 text-xs font-bold rounded-none border ${trackingCount > 50 ? 'bg-orange-100 text-orange-700 border-orange-200' : 'bg-gray-100 text-gray-700 border-gray-200'}`}>
+                  🔥 {trackingCount} users tracking this {trackingCount > 100 && "(Trending Product)"}
+                </span>
+
+                {recommendation && (
+                  <span className={`px-3 py-1 text-xs font-bold rounded-none border flex items-center gap-1 ${
+                    recommendation === "BUY_NOW" ? 'bg-green-100 text-green-700 border-green-200' : 'bg-yellow-100 text-yellow-700 border-yellow-200'
+                  }`}>
+                    {recommendation === "BUY_NOW" ? "🟢 BUY NOW" : "🟡 WAIT"}
+                  </span>
+                )}
+              </div>
+              
               <div className="mb-6 flex items-baseline gap-3">
                 <span className="text-4xl font-extrabold text-orange-500 tracking-tight">
                   {formatCurrency(product.currentPrice)}
                 </span>
+                {product.currentPrice === lowestPrice && (
+                    <span className="text-sm font-bold text-green-600 bg-green-50 px-2 py-1 rounded-none">🔥 Best price ever! Buy now</span>
+                )}
+              </div>
+
+              <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="bg-white border border-gray-200 p-3 rounded-none shadow-sm">
+                  <p className="text-xs text-gray-500 mb-1">📉 Lowest Price</p>
+                  <p className="font-bold text-lg text-gray-900">{formatCurrency(lowestPrice)}</p>
+                  {product.currentPrice > lowestPrice && (
+                    <p className="text-[10px] text-red-500 mt-1 uppercase font-bold tracking-wider">
+                      +{Math.round(((product.currentPrice - lowestPrice) / lowestPrice) * 100)}% above min
+                    </p>
+                  )}
+                </div>
+                <div className="bg-white border border-gray-200 p-3 rounded-none shadow-sm">
+                  <p className="text-xs text-gray-500 mb-1">📈 Highest Price</p>
+                  <p className="font-bold text-lg text-gray-900">{formatCurrency(highestPrice)}</p>
+                </div>
               </div>
 
               <div className="flex flex-wrap gap-4 mb-10">

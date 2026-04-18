@@ -42,6 +42,14 @@ export default function ProductCard({ product }) {
           <h3 className="font-semibold text-gray-800 line-clamp-2 text-sm leading-snug group-hover:text-orange-500 transition-colors">
             {product.title}
           </h3>
+          
+          {(product.trackingCount > 1) && (
+            <div className="mt-1">
+              <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-none border ${product.trackingCount > 50 ? 'bg-orange-100 text-orange-700 border-orange-200' : 'bg-gray-100 text-gray-600 border-gray-200'}`}>
+                🔥 {product.trackingCount} tracking
+              </span>
+            </div>
+          )}
           <div className="mt-2 flex items-baseline gap-2">
             <span className="text-xl font-bold tracking-tight text-gray-900">
               {formatCurrency(product.currentPrice)}
