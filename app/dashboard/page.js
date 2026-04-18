@@ -66,8 +66,8 @@ export default function Dashboard() {
 
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-          <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex items-center gap-4">
-            <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+          <div className="bg-white rounded-none p-6 shadow-sm border border-gray-100 flex items-center gap-4">
+            <div className="w-12 h-12 rounded-none bg-blue-100 flex items-center justify-center text-blue-600">
               <Package size={24} />
             </div>
             <div>
@@ -76,8 +76,8 @@ export default function Dashboard() {
             </div>
           </div>
           
-          <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex items-center gap-4">
-            <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+          <div className="bg-white rounded-none p-6 shadow-sm border border-gray-100 flex items-center gap-4">
+            <div className="w-12 h-12 rounded-none bg-green-100 flex items-center justify-center text-green-600">
               <TrendingDown size={24} />
             </div>
             <div>
@@ -86,8 +86,8 @@ export default function Dashboard() {
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex items-center gap-4">
-            <div className="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center text-orange-600">
+          <div className="bg-white rounded-none p-6 shadow-sm border border-gray-100 flex items-center gap-4">
+            <div className="w-12 h-12 rounded-none bg-orange-100 flex items-center justify-center text-orange-600">
               <BellRing size={24} />
             </div>
             <div>
@@ -111,8 +111,8 @@ export default function Dashboard() {
         </div>
 
         {products.length === 0 ? (
-          <div className="bg-white rounded-2xl p-12 text-center shadow-sm border border-gray-100">
-            <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4 text-gray-400">
+          <div className="bg-white rounded-none p-12 text-center shadow-sm border border-gray-100">
+            <div className="w-16 h-16 bg-gray-100 rounded-none flex items-center justify-center mx-auto mb-4 text-gray-400">
               <Package size={32} />
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-1">No products tracked yet</h3>
