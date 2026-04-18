@@ -19,7 +19,7 @@ export default function ProductCard({ product }) {
 
   return (
     <Link href={`/product/${product._id}`} className="block group">
-      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 transform group-hover:-translate-y-1">
+      <div className="bg-white rounded-none shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 transform group-hover:-translate-y-1">
         <div className="relative aspect-square bg-white flex items-center justify-center p-4">
           {product.imageUrl ? (
             <img
@@ -31,7 +31,7 @@ export default function ProductCard({ product }) {
             <div className="text-gray-300">No Image</div>
           )}
           <div
-            className={`absolute top-3 left-3 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider ${getPlatformColors(
+            className={`absolute top-3 left-3 text-[10px] font-bold px-2 py-1 rounded-none uppercase tracking-wider ${getPlatformColors(
               product.platform
             )} shadow-sm`}
           >
