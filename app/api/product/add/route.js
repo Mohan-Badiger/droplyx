@@ -4,6 +4,7 @@ import Product from "@/models/Product";
 import PriceHistory from "@/models/PriceHistory";
 import { verifyToken } from "@/lib/auth";
 import { scrapeProductUrl } from "@/lib/scraper";
+import { normalizeUrl } from "@/lib/normalizeUrl";
 
 export async function POST(req) {
   try {
@@ -18,16 +19,22 @@ export async function POST(req) {
 
     await dbConnect();
 
-    // Check if product already exists
-    let product = await Product.findOne({ url });
+    const cleanUrl = normalizeUrl(url);
+
+    // Check if product already exists globally
+    let product = await Product.findOne({ url: cleanUrl });
 
     if (product) {
       // Add user to tracking list if not already there
-      if (!product.usersTracking.includes(user.id)) {
-        product.usersTracking.push(user.id);
+      if (!product.trackedBy.includes(user.id)) {
+        product.trackedBy.push(user.id);
+        product.trackingCount = product.trackedBy.length;
         await product.save();
       }
-      return NextResponse.json({ message: "Product already tracked, added to your wishlist", product });
+      return NextResponse.json({ 
+        message: `Already tracked by ${product.trackingCount} users. Showing existing price history.`, 
+        product 
+      });
     }
 
     // Scrape new product
@@ -51,13 +58,14 @@ export async function POST(req) {
     }
 
     product = new Product({
-      url,
+      url: cleanUrl,
       platform: scrapedData.platform,
       title: scrapedData.title,
       imageUrl: scrapedData.imageUrl,
       currentPrice: scrapedData.currentPrice,
       originalPrice: scrapedData.currentPrice, // Just setting initial as original
-      usersTracking: [user.id]
+      trackedBy: [user.id],
+      trackingCount: 1
     });
     
     await product.save();

@@ -27,12 +27,19 @@ const ProductSchema = new mongoose.Schema(
     originalPrice: {
       type: Number,
     },
-    usersTracking: [
+    trackedBy: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
       },
     ],
+    trackingCount: {
+      type: Number,
+      default: 1,
+    },
+    lastChecked: {
+      type: Date,
+    },
   },
   { timestamps: true }
 );
