@@ -16,14 +16,7 @@ export default function Navbar() {
               className="h-8 w-auto"
             />
           </Link>
-          <div className="hidden md:flex gap-4">
-            <Link href="/dashboard" className="text-sm font-medium text-gray-600 hover:text-orange-500 transition-colors">
-              Dashboard
-            </Link>
-            <Link href="/wishlist" className="text-sm font-medium text-gray-600 hover:text-orange-500 transition-colors">
-              Wishlist
-            </Link>
-          </div>
+
         </div>
         <div className="flex items-center gap-4">
           <AuthButton />

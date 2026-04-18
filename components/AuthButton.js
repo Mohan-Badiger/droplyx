@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { LogIn, LogOut, Loader2 } from "lucide-react";
 import AuthModal from "./AuthModal";
 import { useAuth } from "@/context/AuthContext";
+import Link from "next/link";
 
 export default function AuthButton() {
   const { user, loading, logout } = useAuth();
@@ -21,15 +22,23 @@ export default function AuthButton() {
 
   if (user) {
     return (
-      <Button
-        variant="ghost"
-        size="sm"
-        onClick={logout}
-        className="gap-2"
-      >
-        <LogOut className="w-4 h-4" />
-        Sign Out
-      </Button>
+      <div className="flex items-center gap-6">
+        <Link href="/dashboard" className="text-sm font-medium text-gray-600 hover:text-orange-500 transition-colors hidden md:block">
+          Dashboard
+        </Link>
+        <Link href="/wishlist" className="text-sm font-medium text-gray-600 hover:text-orange-500 transition-colors hidden md:block">
+          Wishlist
+        </Link>
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={logout}
+          className="gap-2 rounded-none"
+        >
+          <LogOut className="w-4 h-4" />
+          Sign Out
+        </Button>
+      </div>
     );
   }
 
