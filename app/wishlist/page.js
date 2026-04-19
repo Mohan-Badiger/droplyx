@@ -35,6 +35,24 @@ export default function Wishlist() {
     fetchProducts();
   }, [user]);
 
+  const handleUntrack = async (productId) => {
+    // Optimistic UI update
+    setProducts((prev) => prev.filter((p) => p._id !== productId));
+    
+    try {
+      const res = await fetch("/api/product/untrack", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ productId }),
+      });
+      if (!res.ok) {
+        console.error("Failed to untrack product");
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   if (authLoading || loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-slate-50">
@@ -58,7 +76,7 @@ export default function Wishlist() {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {products.map((product) => (
-              <ProductCard key={product._id} product={product} />
+              <ProductCard key={product._id} product={product} onUntrack={handleUntrack} />
             ))}
           </div>
         )}
