@@ -29,6 +29,9 @@ export default function AuthButton() {
         <Link href="/wishlist" className="text-sm font-medium text-gray-600 hover:text-orange-500 transition-colors hidden md:block">
           Wishlist
         </Link>
+        <Link href="/alerts" className="text-sm font-medium text-gray-600 hover:text-orange-500 transition-colors hidden md:block">
+          Alerts
+        </Link>
         <Button
           variant="ghost"
           size="sm"
