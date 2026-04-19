@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { formatCurrency } from "@/lib/utils";
+import { Trash2 } from "lucide-react";
 
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, onUntrack }) {
   const getPlatformColors = (platform) => {
     switch (platform) {
       case "Amazon":
@@ -37,6 +38,18 @@ export default function ProductCard({ product }) {
           >
             {product.platform}
           </div>
+          {onUntrack && (
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                onUntrack(product._id);
+              }}
+              className="absolute top-4 right-4 p-2 rounded-full bg-white/70 hover:bg-red-50 text-slate-400 hover:text-red-500 hover:shadow-lg backdrop-blur-md border border-white transition-all duration-300 opacity-0 group-hover:opacity-100 z-10"
+              title="Stop tracking"
+            >
+              <Trash2 size={16} />
+            </button>
+          )}
         </div>
         <div className="p-5 border-t border-slate-100 flex flex-col justify-between h-[140px]">
           <h3 className="font-semibold text-slate-800 line-clamp-2 text-[15px] leading-snug group-hover:text-orange-500 transition-colors">
