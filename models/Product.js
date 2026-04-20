@@ -11,7 +11,7 @@ const ProductSchema = new mongoose.Schema(
     platform: {
       type: String,
       required: true,
-      enum: ["Amazon", "Flipkart", "Meesho", "Ajio", "Unknown"],
+      enum: ["Amazon", "Flipkart", "Meesho", "Ajio", "Reliance Digital", "Unknown"],
     },
     title: {
       type: String,
@@ -43,6 +43,14 @@ const ProductSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+// Handle potential enum caching issues in development
+if (mongoose.models.Product) {
+  const enumValues = mongoose.models.Product.schema.path("platform").enumValues;
+  if (!enumValues.includes("Reliance Digital")) {
+    delete mongoose.models.Product;
+  }
+}
 
 export default mongoose.models.Product ||
   mongoose.model("Product", ProductSchema);
