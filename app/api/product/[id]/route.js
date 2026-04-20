@@ -13,8 +13,7 @@ export async function GET(req, { params }) {
     if (!product) return NextResponse.json({ error: "Product not found" }, { status: 404 });
 
     const history = await PriceHistory.find({ product: id })
-      .sort({ date: 1 })
-      .limit(30);
+      .sort({ date: 1 });
 
     // Get min/max from DB efficiently
     const lowestPriceRecord = await PriceHistory.findOne({ product: id }).sort({ price: 1 });
