@@ -19,8 +19,8 @@ DropLyx is a modern, production-ready price tracking platform built with Next.js
     node scripts/migrateProducts.js
     ```
     *This binds your legacy price histories onto the newly formed global Master product links.*
-- **🎯 Premium Dashboard**: A beautiful, modern interface highlighting tracked items, price drops, and account stats.
-- **⚙️ Automated Jobs**: A background scraper script designed to frequently update database entries effortlessly.
+- **Premium Dashboard**: A beautiful, modern interface highlighting tracked items, price drops, and account stats.
+- **Automated Jobs**: A background scraper script designed to frequently update database entries effortlessly.
 
 ## New Features Added
 
