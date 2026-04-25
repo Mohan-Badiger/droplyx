@@ -4,8 +4,8 @@ DropLyx is a modern, production-ready price tracking platform built with Next.js
 
 ## Features
 
-- **🛍️ Multi-Platform URL Scraping**: Automatically fetch product details (Title, Image, Price) by simply pasting a URL.
-- **📈 Price History Charting**: Visualise historical price trends using responsive Recharts line graphs.
+- **Multi-Platform URL Scraping**: Automatically fetch product details (Title, Image, Price) by simply pasting a URL.
+- **Price History Charting**: Visualise historical price trends using responsive Recharts line graphs.
 - **🔐 Secure Authentication**: Custom JWT and Email OTP verification for a passwordless, secure user experience.
 - **🔔 Smart Price Alerts**: Set a target price and receive email notifications automatically when the price drops.
 - **✨ New SaaS Features**:
