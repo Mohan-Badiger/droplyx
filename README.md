@@ -74,26 +74,3 @@ Navigate to `http://localhost:3000` to view the platform.
 ## Run price tracker
 node jobs/priceTracker.js
 ```
-
-## Folder Structure
-- `/app`: Next.js App Router (pages: home, dashboard, wishlist, product details)
-- `/app/api`: All backend endpoints (auth, products, alerts)
-- `/components`: Reusable UI elements (Navbar, Cards, Charts, AuthModal)
-- `/context`: Global React State (AuthContext)
-- `/lib`: Core utilities (scraper logic, db connection, token verification)
-- `/models`: Mongoose Database Schemas
-- `/jobs`: Standalone Node.js scripts for automation
-
-## API Endpoints
-- **POST** `/api/auth/request-otp`: Request an email OTP
-- **POST** `/api/auth/verify-otp`: Validate OTP and login
-- **POST** `/api/product/add`: Start tracking a new product via URL
-- **GET** `/api/product/user-products`: List tracked products for a user
-- **GET** `/api/product/:id`: Get a specific product with historical price data
-- **POST** `/api/alert/create`: Create a price drop alert
-- **GET** `/api/alert/user`: List user's active alerts
-
-## Future Improvements
-- WhatsApp Integrations using Twilio or Meta Graph API.
-- Support for more localized e-commerce platforms.
-- Containerization and Cloud Run deployment for background workers.
