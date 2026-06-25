@@ -4,9 +4,11 @@ import { useState } from "react";
 import { LinkIcon, Loader2, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
 
 export default function AddProductForm({ onProductAdded, redirectOnSuccess }) {
   const router = useRouter();
+  const { user, openLoginModal } = useAuth();
   const [url, setUrl] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -15,6 +17,11 @@ export default function AddProductForm({ onProductAdded, redirectOnSuccess }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!url) return;
+
+    if (!user) {
+      openLoginModal("Please sign in to start tracking product prices!");
+      return;
+    }
 
     setLoading(true);
     setError("");
@@ -55,7 +62,7 @@ export default function AddProductForm({ onProductAdded, redirectOnSuccess }) {
   return (
     <div className="bg-white/80 backdrop-blur-md rounded-2xl p-8 md:p-10 shadow-xl border border-white/60 w-full mb-10 relative overflow-hidden transition-all">
       {/* Decorative background glow */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-orange-200/40 to-rose-200/40 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+      <div className="absolute top-0 right-0 w-96 h-96 bg-linear-to-br from-orange-200/40 to-rose-200/40 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
 
       <div className="relative z-10">
         <div className="mb-6">
