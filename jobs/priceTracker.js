@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import dns from "dns";
 import dotenv from "dotenv";
 import nodemailer from "nodemailer";
 import { scrapeProductUrl } from "../lib/scraper.js";
@@ -9,6 +10,11 @@ dotenv.config();
 // Re-implementing simplistic model schemas to run without Next.js NextApi context
 const connectDB = async () => {
   if (mongoose.connection.readyState >= 1) return;
+  try {
+    dns.setServers(["8.8.8.8", "1.1.1.1"]);
+  } catch (err) {
+    console.warn("Could not set DNS servers:", err.message);
+  }
   return mongoose.connect(process.env.MONGODB_URI);
 };
 

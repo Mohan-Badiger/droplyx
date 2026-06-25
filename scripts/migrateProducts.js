@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import dns from "dns";
 import dotenv from "dotenv";
 import { normalizeUrl } from "../lib/normalizeUrl.js";
 
@@ -32,6 +33,11 @@ const Alert = mongoose.models.Alert || mongoose.model("Alert", AlertSchema);
 async function migrateProducts() {
   console.log("Starting Product Migration...");
   try {
+    try {
+      dns.setServers(["8.8.8.8", "1.1.1.1"]);
+    } catch (err) {
+      console.warn("Could not set DNS servers:", err.message);
+    }
     await mongoose.connect(process.env.MONGODB_URI);
     
     // Get all products
