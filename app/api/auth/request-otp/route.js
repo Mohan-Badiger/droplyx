@@ -47,9 +47,18 @@ export async function POST(req) {
     };
 
     if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
-      await transporter.sendMail(mailOptions);
+      try {
+        await transporter.sendMail(mailOptions);
+      } catch (mailErr) {
+        console.warn("SMTP Failed to send email:", mailErr.message);
+        console.log(`\n==================================================`);
+        console.log(`[DEV MODE FALLBACK] OTP for ${email} is: ${otp}`);
+        console.log(`==================================================\n`);
+      }
     } else {
-      console.log(`[DEV MODE] OTP for ${email} is ${otp}`);
+      console.log(`\n==================================================`);
+      console.log(`[DEV MODE] OTP for ${email} is: ${otp}`);
+      console.log(`==================================================\n`);
     }
 
     return NextResponse.json({ message: "OTP sent successfully" });
