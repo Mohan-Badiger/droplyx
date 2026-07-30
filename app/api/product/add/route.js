@@ -17,6 +17,36 @@ export async function POST(req) {
     const { url } = await req.json();
     if (!url) return NextResponse.json({ error: "URL is required" }, { status: 400 });
 
+    // SSRF Mitigation: Validate URL format and allowed domains
+    let parsedUrl;
+    try {
+      parsedUrl = new URL(url);
+    } catch (e) {
+      return NextResponse.json({ error: "Invalid URL format" }, { status: 400 });
+    }
+
+    const allowedHostnames = [
+      "amazon.in",
+      "www.amazon.in",
+      "amazon.com",
+      "www.amazon.com",
+      "flipkart.com",
+      "www.flipkart.com",
+      "meesho.com",
+      "www.meesho.com",
+      "ajio.com",
+      "www.ajio.com",
+      "reliancedigital.in",
+      "www.reliancedigital.in"
+    ];
+
+    if (!allowedHostnames.includes(parsedUrl.hostname.toLowerCase())) {
+      return NextResponse.json(
+        { error: "Unsupported domain. Scraper is restricted to supported platforms." },
+        { status: 400 }
+      );
+    }
+
     await dbConnect();
 
     const cleanUrl = normalizeUrl(url);
