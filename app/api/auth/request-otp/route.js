@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import dbConnect from "@/lib/db";
 import User from "@/models/User";
 import nodemailer from "nodemailer";
+import bcrypt from "bcryptjs";
 
 export async function POST(req) {
   try {
@@ -19,12 +20,15 @@ export async function POST(req) {
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     const otpExpiry = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes from now
 
+    // Hash the OTP before storing it
+    const hashedOtp = await bcrypt.hash(otp, 10);
+
     // Upsert User
     let user = await User.findOne({ email });
     if (!user) {
-      user = new User({ email, otp, otpExpiry });
+      user = new User({ email, otp: hashedOtp, otpExpiry });
     } else {
-      user.otp = otp;
+      user.otp = hashedOtp;
       user.otpExpiry = otpExpiry;
     }
     await user.save();
@@ -50,15 +54,11 @@ export async function POST(req) {
       try {
         await transporter.sendMail(mailOptions);
       } catch (mailErr) {
-        console.warn("SMTP Failed to send email:", mailErr.message);
-        console.log(`\n==================================================`);
-        console.log(`[DEV MODE FALLBACK] OTP for ${email} is: ${otp}`);
-        console.log(`==================================================\n`);
+        console.warn("SMTP Failed to send email");
       }
     } else {
-      console.log(`\n==================================================`);
-      console.log(`[DEV MODE] OTP for ${email} is: ${otp}`);
-      console.log(`==================================================\n`);
+      // In development fallback, log that OTP flow was triggered but keep actual code secure
+      console.log(`[DEV MODE] OTP verification requested for ${email}`);
     }
 
     return NextResponse.json({ message: "OTP sent successfully" });
