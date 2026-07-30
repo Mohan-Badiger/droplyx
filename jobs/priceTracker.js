@@ -54,6 +54,8 @@ async function runPriceTracker() {
         if (data && data.currentPrice !== product.currentPrice) {
           console.log(`Price changed for ${product.title}: ${product.currentPrice} -> ${data.currentPrice}`);
           
+          const oldPrice = product.currentPrice;
+
           // Update Product
           product.currentPrice = data.currentPrice;
           await product.save();
@@ -62,8 +64,8 @@ async function runPriceTracker() {
           await PriceHistory.create({ product: product._id, price: data.currentPrice });
 
           // 4. Universal Price Drop Notification (If price decreased at all)
-          if (data.currentPrice < product.currentPrice) {
-            console.log(`Universal Drop Alert: ₹${product.currentPrice} -> ₹${data.currentPrice}`);
+          if (data.currentPrice < oldPrice) {
+            console.log(`Universal Drop Alert: ₹${oldPrice} -> ₹${data.currentPrice}`);
             // Find all users tracking this product to notify them of ANY drop
             const usersToNotify = await User.find({ _id: { $in: product.trackedBy } });
             for (const user of usersToNotify) {
