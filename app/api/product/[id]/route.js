@@ -32,8 +32,8 @@ export async function GET(req, { params }) {
 
       if (product.currentPrice <= avgPrice) {
         recommendation = "BUY_NOW";
-      } else if (recentHistory.length >= 2 && recentHistory[0].price > recentHistory[1].price) {
-        // Price increasing recently -> BUY NOW
+      } else if (recentHistory.length >= 2 && recentHistory[0].price < recentHistory[1].price) {
+        // Price decreasing recently -> BUY NOW
         recommendation = "BUY_NOW";
       }
     }
