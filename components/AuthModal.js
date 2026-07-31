@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import {
   Dialog,
@@ -82,7 +81,7 @@ export default function AuthModal({ isOpen, onClose, message }) {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-md bg-white/90 backdrop-blur-2xl border border-white/60 shadow-[0_20px_50px_rgba(0,0,0,0.12)] rounded-2xl overflow-hidden p-0 gap-0">
-        
+
         {/* Glow Effects */}
         <div className="absolute top-0 right-0 w-48 h-48 bg-linear-to-br from-orange-300/20 to-rose-300/20 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3 pointer-events-none"></div>
         <div className="absolute bottom-0 left-0 w-48 h-48 bg-linear-to-tr from-indigo-300/10 to-orange-300/10 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3 pointer-events-none"></div>
@@ -132,9 +131,9 @@ export default function AuthModal({ isOpen, onClose, message }) {
                   disabled={loading}
                 />
               </div>
-              <Button 
-                type="submit" 
-                disabled={loading} 
+              <Button
+                type="submit"
+                disabled={loading}
                 className="w-full bg-slate-900 hover:bg-slate-800 text-white rounded-xl font-semibold py-4 h-auto shadow-md hover:shadow-xl hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2"
               >
                 {loading ? (
@@ -166,9 +165,9 @@ export default function AuthModal({ isOpen, onClose, message }) {
                   disabled={loading}
                 />
               </div>
-              <Button 
-                type="submit" 
-                disabled={loading} 
+              <Button
+                type="submit"
+                disabled={loading}
                 className="w-full bg-linear-to-r from-orange-500 to-rose-500 text-white rounded-xl font-semibold py-4 h-auto shadow-lg shadow-orange-500/20 hover:shadow-orange-500/35 hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2"
               >
                 {loading ? (
