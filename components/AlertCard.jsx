@@ -38,7 +38,7 @@ export default function AlertCard({ alert, onDelete, onUpdate }) {
   return (
     <div className="bg-white/90 backdrop-blur-md rounded-2xl shadow-[0_2px_15px_rgba(0,0,0,0.03)] border border-slate-100/60 overflow-hidden relative group hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-500">
       <Link href={`/product/${product._id}`} className="block">
-        <div className="relative aspect-[16/9] bg-slate-50 flex items-center justify-center p-4">
+        <div className="relative aspect-video bg-slate-50 flex items-center justify-center p-4">
           {product.imageUrl ? (
             <img
               src={product.imageUrl}
@@ -87,11 +87,11 @@ export default function AlertCard({ alert, onDelete, onUpdate }) {
             {product.title}
           </h3>
         </Link>
-        
+
         {isEditing ? (
           <div className="flex bg-slate-50 border border-slate-200 rounded-xl overflow-hidden mt-2">
-            <input 
-              type="number" 
+            <input
+              type="number"
               value={editPrice}
               onChange={(e) => setEditPrice(e.target.value)}
               className="w-full bg-transparent px-3 py-2 text-sm outline-none font-bold text-slate-700"
