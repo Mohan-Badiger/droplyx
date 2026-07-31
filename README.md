@@ -1,5 +1,4 @@
 # DropLyx - Premium Price Tracking Platform
-
 DropLyx is a modern, production-ready price tracking platform built with Next.js 14 App Router, MongoDB, and Tailwind CSS. It empowers users to automatically track product prices across major e-commerce platforms like Amazon, Flipkart, Meesho, and Ajio, ensuring they never miss a price drop.
 
 ## Features
