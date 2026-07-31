@@ -51,11 +51,11 @@ export default function ProductCard({ product, onUntrack }) {
             </button>
           )}
         </div>
-        <div className="p-5 border-t border-slate-100 flex flex-col justify-between h-[140px]">
+        <div className="p-5 border-t border-slate-100 flex flex-col justify-between h-140px">
           <h3 className="font-semibold text-slate-800 line-clamp-2 text-[15px] leading-snug group-hover:text-orange-500 transition-colors">
             {product.title}
           </h3>
-          
+
           {(product.trackingCount > 1) && (
             <div className="mt-1 flex items-center gap-1.5">
               <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${product.trackingCount > 50 ? 'bg-orange-50 text-orange-600 border-orange-200/50' : 'bg-slate-50 text-slate-500 border-slate-200'}`}>
