@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import { LinkIcon, Loader2, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -44,7 +43,7 @@ export default function AddProductForm({ onProductAdded, redirectOnSuccess }) {
 
       setSuccess(data.message || "Product added successfully!");
       setUrl("");
-      
+
       if (onProductAdded) {
         onProductAdded(data.product);
       }
@@ -109,7 +108,7 @@ export default function AddProductForm({ onProductAdded, redirectOnSuccess }) {
             {error}
           </div>
         )}
-        
+
         {success && (
           <div className="mt-6 p-4 bg-green-50/80 backdrop-blur-sm text-green-700 rounded-xl text-sm font-semibold border border-green-100 flex items-center gap-2 animate-in fade-in slide-in-from-top-2">
             {success}
