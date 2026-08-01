@@ -15,9 +15,50 @@ export default function AuthModal({ isOpen, onClose, message }) {
   const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
+  const [otpValues, setOtpValues] = useState(["", "", "", "", "", ""]);
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  const handleOtpChange = (value, index) => {
+    if (isNaN(value)) return;
+    const newOtp = [...otpValues];
+    newOtp[index] = value.substring(value.length - 1);
+    setOtpValues(newOtp);
+    setOtp(newOtp.join(""));
+
+    if (value && index < 5) {
+      const nextInput = document.getElementById(`modal-otp-${index + 1}`);
+      if (nextInput) nextInput.focus();
+    }
+  };
+
+  const handleOtpKeyDown = (e, index) => {
+    if (e.key === "Backspace") {
+      if (!otpValues[index] && index > 0) {
+        const prevInput = document.getElementById(`modal-otp-${index - 1}`);
+        if (prevInput) {
+          prevInput.focus();
+          const newOtp = [...otpValues];
+          newOtp[index - 1] = "";
+          setOtpValues(newOtp);
+          setOtp(newOtp.join(""));
+        }
+      }
+    }
+  };
+
+  const handleOtpPaste = (e) => {
+    e.preventDefault();
+    const pastedData = e.clipboardData.getData("text").trim();
+    if (/^\d{6}$/.test(pastedData)) {
+      const digits = pastedData.split("");
+      setOtpValues(digits);
+      setOtp(pastedData);
+      const lastInput = document.getElementById("modal-otp-5");
+      if (lastInput) lastInput.focus();
+    }
+  };
 
   const handleRequestOtp = async (e) => {
     e.preventDefault();
