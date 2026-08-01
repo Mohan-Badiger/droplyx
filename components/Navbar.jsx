@@ -4,9 +4,7 @@ import AuthButton from "./AuthButton";
 
 export default function Navbar() {
   return (
-    <nav className="bg-white/70 backdrop-blur-xl border-b border-slate-200/40 shadow-[0_4px_30px_rgba(0,0,0,0.02)] sticky top-0 z-50 w-full transition-all duration-300">
-      {/* Top ambient orange accent line */}
-      <div className="absolute top-0 left-0 right-0 h-0.5 bg-linear-to-r from-orange-500 via-rose-500 to-indigo-500"></div>
+    <nav className="bg-white/70 backdrop-blur-xl border-b border-slate-250/60 shadow-xs sticky top-0 z-50 w-full transition-all duration-300">
       
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         <div className="flex items-center gap-6">
