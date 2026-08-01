@@ -32,7 +32,7 @@ export default function AuthButton() {
           variant="ghost"
           size="sm"
           onClick={logout}
-          className="gap-2 font-semibold text-slate-600 hover:text-red-500 hover:bg-red-50/50 rounded-xl px-4 py-2 transition-all duration-300"
+          className="gap-2 font-medium text-slate-650 hover:text-red-650 hover:bg-slate-100/60 rounded-sm px-3.5 py-1.5 transition-colors duration-150"
         >
           <LogOut className="w-4 h-4" />
           <span>Sign Out</span>
@@ -46,9 +46,9 @@ export default function AuthButton() {
       onClick={() => openLoginModal()}
       variant="default"
       size="sm"
-      className="bg-slate-900 hover:bg-slate-800 text-white rounded-xl px-5 py-2.5 font-semibold text-sm shadow-md hover:shadow-xl hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-300 gap-2"
+      className="bg-slate-900 hover:bg-slate-800 text-white rounded-sm px-4 py-1.5 font-medium text-sm border border-slate-900 shadow-xs transition-colors duration-150 gap-2"
     >
-      <LogIn className="w-4.5 h-4.5" />
+      <LogIn className="w-4 h-4" />
       <span>Sign In</span>
     </Button>
   );
