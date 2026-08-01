@@ -111,6 +111,7 @@ export default function AuthModal({ isOpen, onClose, message }) {
         setStep(1);
         setEmail("");
         setOtp("");
+        setOtpValues(["", "", "", "", "", ""]);
       }, 500);
     } catch (err) {
       setError(err.message);
@@ -167,56 +168,53 @@ export default function AuthModal({ isOpen, onClose, message }) {
             )}
 
             {step === 1 ? (
-              <form onSubmit={handleRequestOtp} className="flex flex-col gap-4">
-                <div className="relative group">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Mail className="h-4 w-4 text-slate-400 group-focus-within:text-slate-650 transition-colors" />
-                  </div>
+              <form onSubmit={handleRequestOtp} className="w-full animate-in fade-in duration-300">
+                <div className="relative flex items-center border border-slate-200 rounded-sm bg-white focus-within:ring-2 focus-within:ring-slate-950/10 focus-within:border-slate-800 transition-all duration-150 p-1 pl-3">
+                  <Mail className="h-4 w-4 text-slate-400 shrink-0" />
                   <input
                     type="email"
                     required
                     placeholder="you@example.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="block w-full pl-10 pr-3.5 py-2.5 text-slate-900 placeholder-slate-400 bg-white border border-slate-200 rounded-sm focus:ring-2 focus:ring-slate-950/10 focus:border-slate-800 hover:border-slate-300 outline-none transition-all duration-150 text-sm"
+                    className="w-full pl-2.5 pr-2 py-1.5 text-slate-900 placeholder-slate-400 bg-transparent outline-none text-sm"
                     disabled={loading}
                   />
+                  <Button
+                    type="submit"
+                    disabled={loading}
+                    className="bg-slate-900 hover:bg-slate-800 text-white rounded-sm text-xs font-medium px-4 py-2 h-8 shrink-0 flex items-center gap-1.5 transition-colors duration-150 cursor-pointer shadow-none border border-slate-900 hover:border-slate-800"
+                  >
+                    {loading ? (
+                      <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                    ) : (
+                      <span>Send OTP</span>
+                    )}
+                  </Button>
                 </div>
-                <Button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full bg-slate-900 hover:bg-slate-800 text-white rounded-sm font-medium py-2.5 h-10 shadow-xs flex items-center justify-center gap-2 transition-colors duration-150 cursor-pointer"
-                >
-                  {loading ? (
-                    <>
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                      <span>Sending code...</span>
-                    </>
-                  ) : (
-                    <span>Send Verification Code</span>
-                  )}
-                </Button>
               </form>
             ) : (
-              <form onSubmit={handleVerifyOtp} className="flex flex-col gap-4">
-                <div className="relative group">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Key className="h-4 w-4 text-slate-400 group-focus-within:text-slate-650 transition-colors" />
-                  </div>
-                  <input
-                    type="text"
-                    required
-                    maxLength={6}
-                    placeholder="Enter 6-digit OTP"
-                    value={otp}
-                    onChange={(e) => setOtp(e.target.value)}
-                    className="block w-full pl-10 pr-4 py-2.5 text-center text-md tracking-wider font-semibold text-slate-900 placeholder-slate-400 bg-white border border-slate-200 rounded-sm focus:ring-2 focus:ring-slate-950/10 focus:border-slate-800 hover:border-slate-300 outline-none transition-all duration-150"
-                    disabled={loading}
-                  />
+              <form onSubmit={handleVerifyOtp} className="flex flex-col gap-4 animate-in fade-in duration-300">
+                <div className="flex justify-between gap-2" onPaste={handleOtpPaste}>
+                  {otpValues.map((digit, idx) => (
+                    <input
+                      key={idx}
+                      id={`modal-otp-${idx}`}
+                      type="text"
+                      inputMode="numeric"
+                      pattern="[0-9]*"
+                      maxLength={1}
+                      value={digit}
+                      onChange={(e) => handleOtpChange(e.target.value, idx, otpValues)}
+                      onKeyDown={(e) => handleOtpKeyDown(e, idx)}
+                      className="w-10 h-12 text-center text-lg font-bold border border-slate-200 rounded-sm focus:ring-2 focus:ring-slate-950/10 focus:border-slate-800 outline-none transition-all duration-150 bg-slate-50/50"
+                      disabled={loading}
+                    />
+                  ))}
                 </div>
                 <Button
                   type="submit"
-                  disabled={loading}
+                  disabled={loading || otp.length !== 6}
                   className="w-full bg-slate-900 hover:bg-slate-800 text-white rounded-sm font-medium py-2.5 h-10 shadow-xs flex items-center justify-center gap-2 transition-colors duration-150 cursor-pointer"
                 >
                   {loading ? (
