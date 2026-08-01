@@ -80,112 +80,128 @@ export default function AuthModal({ isOpen, onClose, message }) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md bg-white border border-slate-200 shadow-xl rounded-sm overflow-hidden p-0 gap-0">
-        <div className="p-8 relative z-10">
-          <DialogHeader className="mb-6">
-            <div className="w-12 h-12 bg-slate-100 rounded-sm flex items-center justify-center mb-4 border border-slate-200">
-              <ShieldCheck className="w-6 h-6 text-slate-700" />
-            </div>
-            <DialogTitle className="text-xl font-bold tracking-tight text-slate-900">
-              {step === 1 ? "Welcome to DropLyx" : "Verify Your Email"}
-            </DialogTitle>
-            <DialogDescription className="text-slate-500 text-sm font-medium">
-              {step === 1
-                ? "Enter your email to receive a secure login code."
-                : `We've sent a 6-digit OTP code to ${email}`}
-            </DialogDescription>
-          </DialogHeader>
+      <DialogContent className="sm:max-w-3xl bg-white border border-slate-200 shadow-xl rounded-sm overflow-hidden p-0 gap-0">
+        {step === 2 && (
+          <button
+            type="button"
+            onClick={() => setStep(1)}
+            className="absolute top-4 left-4 z-50 text-slate-400 hover:text-slate-600 transition-colors p-1"
+            title="Back to email input"
+          >
+            <ArrowLeft className="w-4.5 h-4.5" />
+          </button>
+        )}
 
-          {message && (
-            <div className="mb-6 p-3 bg-slate-50 text-slate-700 border border-slate-200 rounded-sm text-xs font-medium leading-relaxed flex items-center gap-2 animate-in fade-in">
-              <AlertCircle className="w-4 h-4 text-slate-500 shrink-0" />
-              <span>{message}</span>
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          {/* Left Column: Form */}
+          <div className="p-8 flex flex-col justify-center min-h-105 relative">
+            <div className="mb-6 flex flex-col items-start">
+              <img
+                src="/Droplyx_logo.png"
+                alt="DropLyx Logo"
+                className="h-8 w-auto mb-6 object-contain"
+              />
+              <DialogTitle className="text-xl font-bold tracking-tight text-slate-900">
+                {step === 1 ? "Sign in to DropLyx" : "Verify Your Email"}
+              </DialogTitle>
+              <DialogDescription className="text-slate-500 text-sm font-medium mt-1">
+                {step === 1
+                  ? "Verify your email to access your account."
+                  : `We've sent a 6-digit OTP code to ${email}`}
+              </DialogDescription>
             </div>
-          )}
 
-          {error && (
-            <div className="mb-6 p-3 bg-red-55/10 text-red-700 border border-red-200/50 rounded-sm text-xs font-medium leading-relaxed flex items-center gap-2 animate-in fade-in">
-              <AlertCircle className="w-4 h-4 text-red-650 shrink-0" />
-              <span>{error}</span>
-            </div>
-          )}
-
-          {step === 1 ? (
-            <form onSubmit={handleRequestOtp} className="flex flex-col gap-4">
-              <div className="relative group">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Mail className="h-4 w-4 text-slate-400 group-focus-within:text-slate-650 transition-colors" />
-                </div>
-                <input
-                  type="email"
-                  required
-                  placeholder="you@example.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="block w-full pl-10 pr-3.5 py-2 text-slate-900 placeholder-slate-400 bg-white border border-slate-200 rounded-sm focus:ring-2 focus:ring-slate-950/10 focus:border-slate-800 hover:border-slate-300 outline-none transition-all duration-150 text-sm"
-                  disabled={loading}
-                />
+            {message && (
+              <div className="mb-6 p-3 bg-slate-50 text-slate-700 border border-slate-200 rounded-sm text-xs font-medium leading-relaxed flex items-center gap-2 animate-in fade-in">
+                <AlertCircle className="w-4 h-4 text-slate-500 shrink-0" />
+                <span>{message}</span>
               </div>
-              <Button
-                type="submit"
-                disabled={loading}
-                className="w-full bg-slate-900 hover:bg-slate-800 text-white rounded-sm font-medium py-2.5 h-10 shadow-xs flex items-center justify-center gap-2 transition-colors duration-150"
-              >
-                {loading ? (
-                  <>
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    <span>Sending code...</span>
-                  </>
-                ) : (
-                  <span>Send Verification Code</span>
-                )}
-              </Button>
-            </form>
-          ) : (
-            <form onSubmit={handleVerifyOtp} className="flex flex-col gap-4">
-              <div className="relative group">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Key className="h-4 w-4 text-slate-400 group-focus-within:text-slate-650 transition-colors" />
-                </div>
-                <input
-                  type="text"
-                  required
-                  maxLength={6}
-                  placeholder="Enter 6-digit OTP"
-                  value={otp}
-                  onChange={(e) => setOtp(e.target.value)}
-                  className="block w-full pl-10 pr-4 py-2 text-center text-md tracking-wider font-semibold text-slate-900 placeholder-slate-400 bg-white border border-slate-200 rounded-sm focus:ring-2 focus:ring-slate-950/10 focus:border-slate-800 hover:border-slate-300 outline-none transition-all duration-150"
-                  disabled={loading}
-                />
+            )}
+
+            {error && (
+              <div className="mb-6 p-3 bg-red-55/10 text-red-700 border border-red-200/50 rounded-sm text-xs font-medium leading-relaxed flex items-center gap-2 animate-in fade-in">
+                <AlertCircle className="w-4 h-4 text-red-650 shrink-0" />
+                <span>{error}</span>
               </div>
-              <Button
-                type="submit"
-                disabled={loading}
-                className="w-full bg-slate-900 hover:bg-slate-800 text-white rounded-sm font-medium py-2.5 h-10 shadow-xs flex items-center justify-center gap-2 transition-colors duration-150"
-              >
-                {loading ? (
-                  <>
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    <span>Verifying...</span>
-                  </>
-                ) : (
-                  <>
-                    <ShieldCheck className="w-4 h-4" />
-                    <span>Verify & Login</span>
-                  </>
-                )}
-              </Button>
-              <Button
-                type="button"
-                variant="ghost"
-                onClick={() => setStep(1)}
-                className="text-slate-500 hover:text-slate-900 rounded-sm py-2 h-9 text-sm font-medium flex items-center justify-center gap-1.5 hover:bg-slate-100/60 transition-colors mt-1"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                <span>Back to email</span>
-              </Button>
-            </form>
-          )}
+            )}
+
+            {step === 1 ? (
+              <form onSubmit={handleRequestOtp} className="flex flex-col gap-4">
+                <div className="relative group">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <Mail className="h-4 w-4 text-slate-400 group-focus-within:text-slate-650 transition-colors" />
+                  </div>
+                  <input
+                    type="email"
+                    required
+                    placeholder="you@example.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="block w-full pl-10 pr-3.5 py-2.5 text-slate-900 placeholder-slate-400 bg-white border border-slate-200 rounded-sm focus:ring-2 focus:ring-slate-950/10 focus:border-slate-800 hover:border-slate-300 outline-none transition-all duration-150 text-sm"
+                    disabled={loading}
+                  />
+                </div>
+                <Button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full bg-slate-900 hover:bg-slate-800 text-white rounded-sm font-medium py-2.5 h-10 shadow-xs flex items-center justify-center gap-2 transition-colors duration-150 cursor-pointer"
+                >
+                  {loading ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      <span>Sending code...</span>
+                    </>
+                  ) : (
+                    <span>Send Verification Code</span>
+                  )}
+                </Button>
+              </form>
+            ) : (
+              <form onSubmit={handleVerifyOtp} className="flex flex-col gap-4">
+                <div className="relative group">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <Key className="h-4 w-4 text-slate-400 group-focus-within:text-slate-650 transition-colors" />
+                  </div>
+                  <input
+                    type="text"
+                    required
+                    maxLength={6}
+                    placeholder="Enter 6-digit OTP"
+                    value={otp}
+                    onChange={(e) => setOtp(e.target.value)}
+                    className="block w-full pl-10 pr-4 py-2.5 text-center text-md tracking-wider font-semibold text-slate-900 placeholder-slate-400 bg-white border border-slate-200 rounded-sm focus:ring-2 focus:ring-slate-950/10 focus:border-slate-800 hover:border-slate-300 outline-none transition-all duration-150"
+                    disabled={loading}
+                  />
+                </div>
+                <Button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full bg-slate-900 hover:bg-slate-800 text-white rounded-sm font-medium py-2.5 h-10 shadow-xs flex items-center justify-center gap-2 transition-colors duration-150 cursor-pointer"
+                >
+                  {loading ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      <span>Verifying...</span>
+                    </>
+                  ) : (
+                    <>
+                      <ShieldCheck className="w-4 h-4" />
+                      <span>Verify & Login</span>
+                    </>
+                  )}
+                </Button>
+              </form>
+            )}
+          </div>
+
+          {/* Right Column: Hero Image */}
+          <div className="hidden md:block relative bg-slate-50 border-l border-slate-100 min-h-105">
+            <img
+              src="/droplyx_login_hero.png"
+              alt="DropLyx Smart Tracking Illustration"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          </div>
         </div>
       </DialogContent>
     </Dialog>
