@@ -63,7 +63,7 @@ export default function Home() {
                 if (user) {
                   router.push("/dashboard");
                 } else {
-                  openLoginModal("Please sign in to access your dashboard and track products!");
+                  openLoginModal();
                 }
               }}
               className="group relative px-8 py-4 bg-linear-to-r from-orange-500 to-rose-500 text-white rounded-xl font-bold text-lg shadow-md hover:shadow-lg shadow-orange-500/15 hover:shadow-orange-500/25 hover:-translate-y-0.5 transition-all duration-300 active:scale-95 flex items-center gap-2.5 overflow-hidden cursor-pointer"
@@ -78,7 +78,7 @@ export default function Home() {
                 if (user) {
                   router.push("/alerts");
                 } else {
-                  openLoginModal("Please sign in to view and manage your price alerts!");
+                  openLoginModal();
                 }
               }}
               className="px-8 py-4 bg-white/80 backdrop-blur-md text-slate-700 border border-slate-200 rounded-xl font-bold text-lg shadow-sm hover:bg-slate-50 hover:border-slate-300 hover:text-slate-900 hover:-translate-y-0.5 transition-all duration-300 active:scale-95 cursor-pointer"
