@@ -49,15 +49,15 @@ export default function Home() {
           <div className="inline-flex items-center gap-2 bg-white/85 backdrop-blur-md shadow-sm border border-orange-100/50 text-orange-600 px-6 py-2.5 rounded-full text-sm font-bold mb-8 animate-in slide-in-from-bottom-2 duration-700 select-none">
             <span>Made with 🩷 by Mohan</span>
           </div>
-          <h2 className="text-5xl md:text-7xl font-extrabold text-slate-900 mb-6 tracking-tight animate-in slide-in-from-bottom-4 duration-700 delay-100 leading-[1.1]">
+          <h2 className="text-4xl sm:text-5xl md:text-7xl font-extrabold text-slate-900 mb-6 tracking-tight leading-[1.1] animate-in slide-in-from-bottom-4 duration-700 delay-100">
             Never Miss A <span className="text-transparent bg-clip-text bg-linear-to-r from-orange-500 to-rose-500">Price Drop</span>
           </h2>
-          <p className="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto font-semibold leading-relaxed animate-in slide-in-from-bottom-5 duration-700 delay-200">
+          <p className="text-base sm:text-lg md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto font-semibold leading-relaxed animate-in slide-in-from-bottom-5 duration-700 delay-200">
             Track prices globally from any e-commerce site. Get instant smart alerts when prices drop. Save money effortlessly.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14 animate-in slide-in-from-bottom-5 duration-700 delay-300">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14 px-4 sm:px-0 animate-in slide-in-from-bottom-5 duration-700 delay-300">
             <button
               onClick={() => {
                 if (user) {
@@ -66,7 +66,7 @@ export default function Home() {
                   openLoginModal();
                 }
               }}
-              className="group relative px-8 py-4 bg-linear-to-r from-orange-500 to-rose-500 text-white rounded-xl font-bold text-lg shadow-md hover:shadow-lg shadow-orange-500/15 hover:shadow-orange-500/25 hover:-translate-y-0.5 transition-all duration-300 active:scale-95 flex items-center gap-2.5 overflow-hidden cursor-pointer"
+              className="group relative w-full sm:w-auto justify-center px-8 py-4 bg-linear-to-r from-orange-500 to-rose-500 text-white rounded-xl font-bold text-lg shadow-md hover:shadow-lg shadow-orange-500/15 hover:shadow-orange-500/25 hover:-translate-y-0.5 transition-all duration-300 active:scale-95 flex items-center gap-2.5 overflow-hidden cursor-pointer"
             >
               <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
               <Sparkles className="w-5 h-5 shrink-0" />
@@ -81,7 +81,7 @@ export default function Home() {
                   openLoginModal();
                 }
               }}
-              className="px-8 py-4 bg-white/80 backdrop-blur-md text-slate-700 border border-slate-200 rounded-xl font-bold text-lg shadow-sm hover:bg-slate-50 hover:border-slate-300 hover:text-slate-900 hover:-translate-y-0.5 transition-all duration-300 active:scale-95 cursor-pointer"
+              className="w-full sm:w-auto justify-center px-8 py-4 bg-white/80 backdrop-blur-md text-slate-700 border border-slate-200 rounded-xl font-bold text-lg shadow-sm hover:bg-slate-50 hover:border-slate-300 hover:text-slate-900 hover:-translate-y-0.5 transition-all duration-300 active:scale-95 cursor-pointer"
             >
               View My Alerts
             </button>
