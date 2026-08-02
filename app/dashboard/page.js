@@ -45,7 +45,7 @@ export default function Dashboard() {
   const handleUntrack = async (productId) => {
     // Optimistic UI update
     setProducts((prev) => prev.filter((p) => p._id !== productId));
-    
+
     try {
       const res = await fetch("/api/product/untrack", {
         method: "POST",
@@ -79,14 +79,14 @@ export default function Dashboard() {
 
       <main className="max-w-7xl mx-auto px-4 py-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Welcome back, {user?.email}</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight break-all">Welcome back, {user?.email}</h1>
           <p className="text-slate-500 mt-2 font-medium">Here is the latest on your tracked items.</p>
         </div>
 
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-[0_2px_20px_rgba(0,0,0,0.02)] border border-slate-100 flex items-center gap-5 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-            <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100/50 flex items-center justify-center text-blue-600 border border-blue-100">
+            <div className="w-14 h-14 rounded-xl bg-linear-to-br from-blue-50 to-blue-100/50 flex items-center justify-center text-blue-600 border border-blue-100">
               <Package size={26} />
             </div>
             <div>
@@ -94,9 +94,9 @@ export default function Dashboard() {
               <p className="text-3xl font-bold text-slate-900 tracking-tight">{products.length}</p>
             </div>
           </div>
-          
+
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-[0_2px_20px_rgba(0,0,0,0.02)] border border-slate-100 flex items-center gap-5 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-            <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-emerald-50 to-emerald-100/50 flex items-center justify-center text-emerald-600 border border-emerald-100">
+            <div className="w-14 h-14 rounded-xl bg-linear-to-br from-emerald-50 to-emerald-100/50 flex items-center justify-center text-emerald-600 border border-emerald-100">
               <TrendingDown size={26} />
             </div>
             <div>
@@ -106,7 +106,7 @@ export default function Dashboard() {
           </div>
 
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-[0_2px_20px_rgba(0,0,0,0.02)] border border-slate-100 flex items-center gap-5 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-            <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-orange-50 to-rose-50 flex items-center justify-center text-orange-600 border border-orange-100/50">
+            <div className="w-14 h-14 rounded-xl bg-linear-to-br from-orange-50 to-rose-50 flex items-center justify-center text-orange-600 border border-orange-100/50">
               <BellRing size={26} />
             </div>
             <div>
