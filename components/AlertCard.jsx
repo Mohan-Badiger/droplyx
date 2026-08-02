@@ -58,13 +58,13 @@ export default function AlertCard({ alert, onDelete, onUpdate }) {
         </div>
       </Link>
 
-      <div className="absolute top-4 right-4 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+      <div className="absolute top-4 right-4 flex flex-col gap-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 z-10">
         <button
           onClick={(e) => {
             e.preventDefault();
             setIsEditing(!isEditing);
           }}
-          className="p-2 rounded-full bg-white/70 hover:bg-orange-50 text-slate-400 hover:text-orange-500 hover:shadow-lg backdrop-blur-md border border-white transition-all duration-300"
+          className="p-2 rounded-full bg-white/80 hover:bg-orange-50 text-slate-500 hover:text-orange-500 hover:shadow-md border border-slate-100 transition-all duration-300 cursor-pointer shadow-sm"
           title="Edit target price"
         >
           <Edit2 size={16} />
@@ -74,7 +74,7 @@ export default function AlertCard({ alert, onDelete, onUpdate }) {
             e.preventDefault();
             onDelete(alert._id);
           }}
-          className="p-2 rounded-full bg-white/70 hover:bg-red-50 text-slate-400 hover:text-red-500 hover:shadow-lg backdrop-blur-md border border-white transition-all duration-300"
+          className="p-2 rounded-full bg-white/80 hover:bg-red-55/10 text-slate-500 hover:text-red-600 hover:shadow-md border border-slate-100 transition-all duration-300 cursor-pointer shadow-sm"
           title="Delete alert"
         >
           <Trash2 size={16} />
