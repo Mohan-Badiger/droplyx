@@ -59,7 +59,7 @@ export default function AddProductForm({ onProductAdded, redirectOnSuccess }) {
   };
 
   return (
-    <div className="bg-white/80 backdrop-blur-md rounded-2xl p-8 md:p-10 shadow-xl border border-white/60 w-full mb-10 relative overflow-hidden transition-all">
+    <div className="bg-white/80 backdrop-blur-md rounded-2xl p-5 sm:p-8 md:p-10 shadow-xl border border-white/60 w-full mb-10 relative overflow-hidden transition-all">
       {/* Decorative background glow */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-linear-to-br from-orange-200/40 to-rose-200/40 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
 
@@ -87,7 +87,7 @@ export default function AddProductForm({ onProductAdded, redirectOnSuccess }) {
           <Button
             type="submit"
             disabled={loading || !url}
-            className="bg-slate-900 hover:bg-slate-800 text-white px-8 py-4 rounded-xl font-medium h-auto flex items-center gap-2 transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1 active:scale-[0.98]"
+            className="bg-slate-900 hover:bg-slate-800 text-white px-8 py-4 rounded-xl font-medium h-auto flex items-center justify-center gap-2 transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1 active:scale-[0.98] w-full sm:w-auto cursor-pointer shrink-0"
           >
             {loading ? (
               <>
