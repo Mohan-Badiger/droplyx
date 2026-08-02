@@ -136,7 +136,7 @@ export default function AuthModal({ isOpen, onClose, message }) {
 
         <div className="grid grid-cols-1 md:grid-cols-2">
           {/* Left Column: Form */}
-          <div className="p-8 flex flex-col justify-center min-h-105 relative">
+          <div className="p-5 sm:p-8 flex flex-col justify-center min-h-105 relative">
             <div className="mb-6 flex flex-col items-start">
               <img
                 src="/Droplyx_logo.png"
@@ -195,7 +195,7 @@ export default function AuthModal({ isOpen, onClose, message }) {
               </form>
             ) : (
               <form onSubmit={handleVerifyOtp} className="flex flex-col gap-4 animate-in fade-in duration-300">
-                <div className="flex justify-between gap-2" onPaste={handleOtpPaste}>
+                <div className="flex justify-between gap-1.5" onPaste={handleOtpPaste}>
                   {otpValues.map((digit, idx) => (
                     <input
                       key={idx}
@@ -207,7 +207,7 @@ export default function AuthModal({ isOpen, onClose, message }) {
                       value={digit}
                       onChange={(e) => handleOtpChange(e.target.value, idx, otpValues)}
                       onKeyDown={(e) => handleOtpKeyDown(e, idx)}
-                      className="w-10 h-12 text-center text-lg font-bold border border-slate-200 rounded-sm focus:ring-2 focus:ring-slate-950/10 focus:border-slate-800 outline-none transition-all duration-150 bg-slate-50/50"
+                      className="w-8 sm:w-10 h-10 sm:h-12 text-center text-base sm:text-lg font-bold border border-slate-200 rounded-sm focus:ring-2 focus:ring-slate-950/10 focus:border-slate-800 outline-none transition-all duration-150 bg-slate-50/50"
                       disabled={loading}
                     />
                   ))}
