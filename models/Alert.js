@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+
 const AlertSchema = new mongoose.Schema(
   {
     user: {
