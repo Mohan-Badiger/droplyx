@@ -35,7 +35,6 @@ DropLyx is a modern, production-ready price tracking platform built with Next.js
 4. View dashboard
 
 ## Tech Stack
-
 - **Frontend:** Next.js 14, React 19, Tailwind CSS v4, Lucide React, Recharts
 - **Backend:** Next.js API Routes
 - **Database:** MongoDB (Mongoose ODMs)
