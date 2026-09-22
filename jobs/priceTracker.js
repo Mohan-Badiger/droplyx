@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import nodemailer from "nodemailer";
 import { scrapeProductUrl } from "../lib/scraper.js";
 
-// Basic setup to run standalone script
+// Basic setup to run standalone script.
 dotenv.config();
 
 // Re-implementing simplistic model schemas to run without Next.js NextApi context
@@ -45,21 +45,21 @@ async function runPriceTracker() {
   try {
     await connectDB();
     const products = await Product.find({});
-    
+
     for (const product of products) {
       try {
         console.log(`Scraping ${product.platform} product: ${product.url.substring(0, 50)}...`);
         const data = await scrapeProductUrl(product.url);
-        
+
         if (data && data.currentPrice !== product.currentPrice) {
           console.log(`Price changed for ${product.title}: ${product.currentPrice} -> ${data.currentPrice}`);
-          
+
           const oldPrice = product.currentPrice;
 
           // Update Product
           product.currentPrice = data.currentPrice;
           await product.save();
-          
+
           // Add History
           await PriceHistory.create({ product: product._id, price: data.currentPrice });
 
@@ -88,7 +88,7 @@ async function runPriceTracker() {
         } else {
           console.log(`No price change for ${product.title}`);
         }
-        
+
       } catch (err) {
         console.error(`Failed to update product ${product._id}:`, err.message);
       }
@@ -141,7 +141,7 @@ const start = async () => {
       await sleep(intervalHours * 3600000);
     }
   } while (isLoop);
-  
+
   process.exit(0);
 };
 
