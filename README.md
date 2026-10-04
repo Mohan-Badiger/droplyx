@@ -69,6 +69,12 @@ npm run dev
 ```
 Navigate to `http://localhost:3000` to view the platform.
 
+## Deploying to Vercel
+
+Add `MONGODB_URI`, `JWT_SECRET`, `EMAIL_USER`, and `EMAIL_PASS` under **Project Settings → Environment Variables** for the Production environment (and Preview/Development if needed). Ensure the MongoDB Atlas cluster is running and its network access rules allow connections from your Vercel deployment. Redeploy after changing environment variables.
+
+The API reuses MongoDB connections between serverless invocations and recycles idle pooled sockets, so the first request after an idle period can establish a fresh connection instead of using an expired one.
+
 ## Run price tracker
 node jobs/priceTracker.js
 ```
