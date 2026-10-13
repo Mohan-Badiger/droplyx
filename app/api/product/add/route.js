@@ -10,7 +10,7 @@ export async function POST(req) {
   try {
     const token = req.cookies.get("token")?.value;
     if (!token) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    
+
     const user = verifyToken(token);
     if (!user) return NextResponse.json({ error: "Invalid token" }, { status: 401 });
 
@@ -61,9 +61,9 @@ export async function POST(req) {
         product.trackingCount = product.trackedBy.length;
         await product.save();
       }
-      return NextResponse.json({ 
-        message: `Already tracked by ${product.trackingCount} users. Showing existing price history.`, 
-        product 
+      return NextResponse.json({
+        message: `Already tracked by ${product.trackingCount} users. Showing existing price history.`,
+        product
       });
     }
 
@@ -74,11 +74,11 @@ export async function POST(req) {
     } catch (scrapeErr) {
       console.warn("Scraper Warning:", scrapeErr.message);
       return NextResponse.json(
-        { 
-          success: false, 
-          error: "Store blocked request or format changed. Try again later.", 
-          message: scrapeErr.message 
-        }, 
+        {
+          success: false,
+          error: "Store blocked request or format changed. Try again later.",
+          message: scrapeErr.message
+        },
         { status: 400 }
       );
     }
@@ -97,7 +97,7 @@ export async function POST(req) {
       trackedBy: [user.id],
       trackingCount: 1
     });
-    
+
     await product.save();
 
     // Add Initial Price History
