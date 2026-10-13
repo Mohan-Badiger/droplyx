@@ -117,7 +117,7 @@ export default function ProductDetailPage() {
 
             {/* Product Info */}
             <div className="flex flex-col justify-center">
-              <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 leading-tight mb-4">
+              <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-900 leading-tight mb-4">
                 {product.title}
               </h1>
 
