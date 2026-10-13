@@ -52,6 +52,18 @@ export default function PriceChart({ history }) {
       });
     }
 
+    // If there is only 1 point, create a baseline point 24h earlier so Recharts renders a visible price line
+    if (fullData.length === 1) {
+      const single = fullData[0];
+      const prevDate = new Date(single.rawDate);
+      prevDate.setDate(prevDate.getDate() - 1);
+      fullData.unshift({
+        rawDate: prevDate,
+        date: prevDate.toLocaleDateString("en-US", { month: "short", day: "numeric" }),
+        price: single.price,
+      });
+    }
+
     return fullData;
   }, [history]);
 
@@ -64,7 +76,8 @@ export default function PriceChart({ history }) {
     if (range === "1m") cutoffDate.setMonth(today.getMonth() - 1);
     else if (range === "3m") cutoffDate.setMonth(today.getMonth() - 3);
 
-    return processedData.filter(d => d.rawDate >= cutoffDate);
+    const filtered = processedData.filter(d => d.rawDate >= cutoffDate);
+    return filtered.length > 0 ? filtered : processedData;
   }, [processedData, range]);
 
   const ranges = [
@@ -81,15 +94,15 @@ export default function PriceChart({ history }) {
             key={r.value}
             onClick={() => setRange(r.value)}
             className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all duration-300 ${range === r.value
-                ? "bg-orange-500 text-white shadow-md shadow-orange-500/20"
-                : "bg-white text-slate-500 border border-slate-200 hover:border-slate-300 hover:bg-slate-50"
+              ? "bg-orange-500 text-white shadow-md shadow-orange-500/20"
+              : "bg-white text-slate-500 border border-slate-200 hover:border-slate-300 hover:bg-slate-50"
               }`}
           >
             {r.label}
           </button>
         ))}
       </div>
-      <div className="w-full h-300px">
+      <div className="w-full h-75 min-h-75">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={filteredData} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
             <Line
