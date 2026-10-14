@@ -150,9 +150,4 @@ start().catch(err => {
   process.exit(1);
 });
 
-if (isDirectRun) {
-  start().catch(err => {
-    console.error("Fatal job error:", err);
-    process.exit(1);
-  });
-}
+export { runPriceTracker };
